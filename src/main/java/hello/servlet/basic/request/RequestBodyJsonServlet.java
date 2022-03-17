@@ -25,7 +25,7 @@ public class RequestBodyJsonServlet extends HttpServlet {
         String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
 
         System.out.println("messageBody = " + messageBody);
-        
+
         // messageBody에 들어간 JSON을 읽어서 HelloData로 변환한다.
         HelloData helloData = objectMapper.readValue(messageBody, HelloData.class);
 
