@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "ResponseHeaderServlet", urlPatterns = "/response-header")
+@WebServlet(name = "responseHeaderServlet", urlPatterns = "/response-header")
 public class ResponseHeaderServlet extends HttpServlet {
 
     @Override
@@ -28,9 +28,9 @@ public class ResponseHeaderServlet extends HttpServlet {
         response.setHeader("my-header", "hello"); // 임의로 내가 정한 헤더
 
         //[Header 편의 메서드]
-        content(response);
-        cookie(response);
-        redirect(response);
+//        content(response);
+//        cookie(response);
+//        redirect(response);
 
         //[message body]
         PrintWriter writer = response.getWriter();
