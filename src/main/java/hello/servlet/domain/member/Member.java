@@ -12,11 +12,11 @@ public class Member {
     private int age;
 
     // 기본 생성자
-    public Member(String hello, int i) {
+    public Member() {
     }
 
     // 생성자
-    public Member(Long id, String username, int age) {
+    public Member(String username, int age) {
         this.id = id;
         this.username = username;
         this.age = age;
