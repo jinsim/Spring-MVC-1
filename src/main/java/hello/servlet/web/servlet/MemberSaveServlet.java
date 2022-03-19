@@ -18,29 +18,16 @@ public class MemberSaveServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        System.out.println("MemberSaveServlet.service");
-//        // 쿼리 파라미터든, Form 데이터든, username=kim&age=20 과 같은 형식으로 되어있으면 getParameter로 읽을 수 있다.
-//        String username = request.getParameter("username");
-//        int age = Integer.parseInt(request.getParameter("age")); // String으로 오므로 int로 변경
-//
-//        System.out.println("age = " + age);
-//        System.out.println("username = " + username);
-//        Member member = new Member(username, age);
-//        memberRepository.save(member);
-//
-//        // 저장이 잘 되었는지 보기 위해, 응답을 HTML 코드로 내린다.
-//        response.setContentType("text/html");
-//        response.setCharacterEncoding("utf-8");
-//
-//        System.out.println("member = " + member);
-//        System.out.println("memb = " + member.getUsername());
-//        System.out.println("member.getUsername() = " + member.getUsername());
 
         System.out.println("MemberSaveServlet.service");
+        // 쿼리 파라미터든, Form 데이터든, username=kim&age=20 과 같은 형식으로 되어있으면 getParameter로 읽을 수 있다.
         String username = request.getParameter("username");
-        int age = Integer.parseInt(request.getParameter("age"));
+        int age = Integer.parseInt(request.getParameter("age")); // String으로 오므로 int로 변경
+
         Member member = new Member(username, age);
-        System.out.println("member = " + member); memberRepository.save(member);
+        memberRepository.save(member);
+
+        // 저장이 잘 되었는지 보기 위해, 응답을 HTML 코드로 내린다.
         response.setContentType("text/html");
         response.setCharacterEncoding("utf-8");
 
