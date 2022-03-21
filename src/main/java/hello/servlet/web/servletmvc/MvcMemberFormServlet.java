@@ -15,7 +15,6 @@ public class MvcMemberFormServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("MvcMemberFormServlet.service");
         // 보여줄 View 경로
         String viewPath = "/WEB-INF/views/new-form.jsp";
         // Controller에서 View를 연결
