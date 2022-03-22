@@ -1,12 +1,11 @@
-package hello.servlet.frontcontroller.v1.Controller;
+package hello.servlet.web.frontcontroller.v1.Controller;
 
-import hello.servlet.frontcontroller.v1.ControllerV1;
+import hello.servlet.web.frontcontroller.v1.ControllerV1;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.rowset.serial.SerialException;
 import java.io.IOException;
 
 public class MemberFormControllerV1 implements ControllerV1 {
