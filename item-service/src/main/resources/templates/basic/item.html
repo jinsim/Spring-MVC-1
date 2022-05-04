@@ -15,6 +15,10 @@
   <div class="py-5 text-center">
     <h2>상품 상세</h2>
   </div>
+  <!-- HTTP 요청 파라미터를 워낙 많이 사용하니까, 타임리프에서 파라미터값을 바로 꺼낼 수 있도록 기능 지원한다.
+   th:if의 경우, 해당 조건이 만족하면 th가 실행되는 것이다.-->
+  <h2 th:if="${param.status}" th:text="'저장 완료!'"></h2>
+
   <div>
     <label for="itemId">상품 ID</label>
     <input type="text" id="itemId" name="itemId" class="form-control" value="1" th:value="${item.id}" readonly>
