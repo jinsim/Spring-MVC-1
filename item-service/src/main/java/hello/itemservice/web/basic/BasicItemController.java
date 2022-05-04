@@ -6,10 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -49,9 +46,61 @@ public class BasicItemController {
         return "basic/addForm";
     }
 
+//    @PostMapping("/add")
+    public String addItemV1(@RequestParam String itemName,
+                       @RequestParam int price, // int나 Integer 중 아무거나 사용해도 됨.
+                       @RequestParam Integer quantity,
+                       Model model) {
+
+        Item item = new Item();
+        item.setItemName(itemName);
+        item.setPrice(price);
+        item.setQuantity(quantity);
+
+        itemRepository.save(item);
+
+        model.addAttribute("item", item);
+        return "basic/item";
+    }
+
     @PostMapping("/add")
-    public String save() {
-        return "xxx";
+    public String addItemV2(@ModelAttribute("item") Item item) {
+
+/*      @ ModelAttribute가 아래의 코드를 실행해준다.
+        Item item = new Item();
+        item.setItemName(itemName);
+        item.setPrice(price);
+        item.setQuantity(quantity);
+*/
+
+        itemRepository.save(item);
+
+/*      @ModelAttribute가 name속성(”item”) 으로 item을 model에 넣어준다.
+        따라서 model도 필요 없다. 밖에서 스프링이 만든 model에 자동으로 들어간다.
+        model.addAttribute("item", item);
+*/
+        return "basic/item";
+    }
+
+    /**
+     * @ModelAttribute name 생략 가능
+     * model.addAttribute(item); 자동 추가, 생략 가능
+     * 생략시 model에 저장되는 name은 클래스명 첫글자만 소문자로 등록 Item -> item
+     */
+    @PostMapping("/add")
+    public String addItemV3(@ModelAttribute Item item){
+        itemRepository.save(item);
+        return "basic/item";
+    }
+
+    /**
+     * @ModelAttribute 자체 생략 가능
+     * model.addAttribute(item) 자동 추가
+     */
+    @PostMapping("/add")
+    public String addItemV4(Item item) {
+        itemRepository.save(item);
+        return "basic/item";
     }
 
     /**
