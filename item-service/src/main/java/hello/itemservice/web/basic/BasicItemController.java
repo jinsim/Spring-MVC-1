@@ -63,7 +63,7 @@ public class BasicItemController {
         return "basic/item";
     }
 
-    @PostMapping("/add")
+//    @PostMapping("/add")
     public String addItemV2(@ModelAttribute("item") Item item) {
 
 /*      @ ModelAttribute가 아래의 코드를 실행해준다.
@@ -87,7 +87,7 @@ public class BasicItemController {
      * model.addAttribute(item); 자동 추가, 생략 가능
      * 생략시 model에 저장되는 name은 클래스명 첫글자만 소문자로 등록 Item -> item
      */
-    @PostMapping("/add")
+//    @PostMapping("/add")
     public String addItemV3(@ModelAttribute Item item){
         itemRepository.save(item);
         return "basic/item";
@@ -101,6 +101,20 @@ public class BasicItemController {
     public String addItemV4(Item item) {
         itemRepository.save(item);
         return "basic/item";
+    }
+
+    @GetMapping("/{itemId}/edit")
+    public String editForm(@PathVariable Long itemId, Model model) {
+        Item item = itemRepository.findById(itemId);
+        model.addAttribute("item", item);
+        return "basic/editForm";
+    }
+
+    @PostMapping("/{itemId}/edit")
+    public String edit(@PathVariable Long itemId, @ModelAttribute Item item) {
+        itemRepository.update(itemId, item);
+        // redirect로 이동하면 브라우저의 주소도 변경됨. PathVariable에 있는 itemId를 여기서도 사용 가능.
+        return "redirect:/basic/items/{itemId}";
     }
 
     /**
